@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project - Xach</title>
+    <link rel="stylesheet" href="styles.css?v=32">
+    <script src="content-loader.js?v=20250822175300"></script>
+    <script async src="//www.instagram.com/embed.js"></script>
+    <script defer src="https://player.vimeo.com/api/player.js"></script>
+      <style>
+          /* Awards Visual Hierarchy - Design Principles */
+          .award-item {
+              font-family: 'ABCMonumentGrotesk-Medium', Arial, sans-serif !important;
+              padding: 24px 20px !important;
+          }
+          
+          /* Award Name - Primary hierarchy (largest, darkest) */
+          .award-name {
+              font-size: 20px !important;
+              font-weight: 500 !important;
+              color: #111 !important;
+              margin-bottom: 12px !important;
+              letter-spacing: -0.02em !important;
+              line-height: 1.1 !important;
+          }
+          
+          /* Award Level - Secondary hierarchy (medium, medium weight) */
+          .award-level {
+              font-size: 16px !important;
+              font-weight: 500 !important;
+              color: #333 !important;
+              margin-bottom: 8px !important;
+              letter-spacing: -0.01em !important;
+              line-height: 1.2 !important;
+          }
+          
+          /* Award Category - Tertiary hierarchy (smallest, lightest) */
+          .award-category {
+              font-size: 14px !important;
+              font-weight: 500 !important;
+              color: #666 !important;
+              letter-spacing: -0.01em !important;
+              line-height: 1.3 !important;
+              font-style: normal !important;
+          }
+          
+          /* Contact Section Adjustments */
+          .contact-item {
+              font-size: 12px !important; /* Reduced from 16px by ~25% */
+              height: 22px !important; /* Reduced from 28px */
+          }
+          
+          /* Email Copy Functionality */
+          .email-copy {
+              cursor: pointer;
+              transition: all 0.3s ease;
+              position: relative;
+          }
+          
+          .email-copy:hover,
+          .contact-item:hover {
+              background-color: #ccff00 !important;
+          }
+          
+          .email-copy:hover .email-text {
+              display: none;
+          }
+          
+          .email-copy:hover .copy-text,
+          .email-copy:hover .copy-icon {
+              display: inline !important;
+          }
+          
+          .email-copy:hover .copy-icon {
+              margin-right: 6px;
+          }
+          
+          .email-copy.copied {
+              background-color: #ccff00 !important;
+          }
+          
+          .email-copy.copied .email-text {
+              display: none;
+          }
+          
+          .email-copy.copied .copy-text {
+              display: inline !important;
+          }
+          
+          .email-copy.copied .copy-icon {
+              display: inline !important;
+          }
+          
+          /* Success Popup */
+          .success-popup {
+              position: absolute;
+              top: -40px;
+              left: 50%;
+              transform: translateX(-50%);
+              background-color: #ccff00;
+              color: #111;
+              padding: 8px 12px;
+              border-radius: 4px;
+              font-size: 11px;
+              font-weight: 500;
+              white-space: nowrap;
+              opacity: 0;
+              pointer-events: none;
+              transition: opacity 0.3s ease;
+              z-index: 1001;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+          }
+          
+          .success-popup.show {
+              opacity: 1;
+          }
+          
+          .success-popup::after {
+              content: '';
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              transform: translateX(-50%);
+              border: 4px solid transparent;
+              border-top-color: #ccff00;
+          }
+          
+          /* Neon Button Animation */
+          @keyframes neonYellowPulse {
+              0% {
+                  box-shadow: 
+                      0 0 20px rgba(204, 255, 0, 0.4),
+                      0 0 40px rgba(204, 255, 0, 0.3),
+                      0 0 80px rgba(204, 255, 0, 0.2);
+              }
+              100% {
+                  box-shadow: 
+                      0 0 25px rgba(204, 255, 0, 0.5),
+                      0 0 50px rgba(204, 255, 0, 0.4),
+                      0 0 100px rgba(204, 255, 0, 0.3);
+              }
+          }
+          
+          /* Mobile Responsive for Project Content */
+          @media (max-width: 550px) {
+              .caitlin-clark-container {
+                  flex-direction: column !important;
+                  gap: 30px !important;
+              }
+              
+              .caitlin-clark-container > div {
+                  flex: none !important;
+                  width: 100% !important;
+              }
+              
+              /* Image first, then video */
+              .caitlin-clark-container > div:nth-child(2) {
+                  order: -1;
+              }
+              
+              #projectSpecificContent {
+                  padding: 40px 20px !important;
+              }
+              
+              /* Hot Ones Grid Mobile - Middle Row */
+              #hotOnesContent div[style*="grid-template-columns: repeat(3, 1fr)"] {
+                  grid-template-columns: 1fr !important;
+                  gap: 10px !important;
+              }
+              
+              #hotOnesContent > div.px-3 {
+                  padding-left: 12px !important;
+                  padding-right: 12px !important;
+              }
+              
+              /* McDonaldland Grid Mobile */
+              .mcdonaldland-grid {
+                  grid-template-columns: repeat(4, 1fr) !important;
+                  gap: 2px !important;
+              }
+              
+              .mcdonaldland-grid > div {
+                  height: 60px !important;
+              }
+              
+              #mcdonaldlandContent > div {
+                  padding-left: 10px !important;
+                  padding-right: 10px !important;
+              }
+          }
+          
+          /* Scroll Down Indicator */
+          .scroll-indicator {
+              position: fixed;
+              bottom: 40px;
+              left: 50%;
+              transform: translateX(-50%);
+              z-index: 500;
+              font-family: 'ABCMonumentGrotesk-Medium', sans-serif;
+              font-size: 14px;
+              font-weight: 500;
+              color: #111;
+              cursor: pointer;
+              transition: transform 0.1s ease;
+              animation: scrollBounce 2s infinite;
+              text-align: center;
+              display: none; /* Hidden by default */
+          }
+          
+          /* McDonaldland specific scroll indicator with neon glow */
+          .scroll-indicator.mcdonaldland-active {
+              display: block;
+              color: #111;
+          }
+          
+          .scroll-indicator.mcdonaldland-active .scroll-text {
+              display: inline-block;
+              text-shadow: 
+                  0 0 10px rgba(204, 255, 0, 0.8),
+                  0 0 20px rgba(204, 255, 0, 0.6),
+                  0 0 30px rgba(204, 255, 0, 0.4),
+                  0 0 40px rgba(204, 255, 0, 0.2);
+              background: rgba(204, 255, 0, 0.15);
+              padding: 8px 16px;
+              border-radius: 20px;
+              backdrop-filter: blur(15px) saturate(180%) !important;
+              -webkit-backdrop-filter: blur(15px) saturate(180%) !important;
+              border: 1px solid rgba(204, 255, 0, 0.4);
+              margin-bottom: 12px;
+              box-shadow: 
+                  0 8px 32px rgba(204, 255, 0, 0.1),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          }
+          
+          .scroll-indicator.fade-out {
+              opacity: 0;
+              pointer-events: none;
+          }
+          
+          @keyframes scrollBounce {
+              0%, 20%, 50%, 80%, 100% {
+                  transform: translateX(-50%) translateY(0);
+              }
+              40% {
+                  transform: translateX(-50%) translateY(-8px);
+              }
+              60% {
+                  transform: translateX(-50%) translateY(-4px);
+              }
+          }
+          
+          .scroll-indicator:hover {
+              transform: translateX(-50%) translateY(-2px);
+          }
+          
+          /* Custom down arrow */
+          .scroll-arrow {
+              display: block;
+              margin: 4px auto 0;
+              width: 0;
+              height: 0;
+              border-left: 6px solid transparent;
+              border-right: 6px solid transparent;
+              border-top: 8px solid #111;
+              transition: transform 0.3s ease;
+          }
+          
+          .scroll-indicator.mcdonaldland-active .scroll-arrow {
+              margin-top: 8px;
+          }
+          
+          .scroll-indicator:hover .scroll-arrow {
+              transform: translateY(2px);
+          }
+      </style>
+</head>
+<body>
+    <!-- Floating Menu -->
+    <div class="floating-menu" id="floatingMenu">
+        <!-- Collapsed State -->
+        <div class="menu-collapsed" id="menuCollapsed">
+            <div class="collapsed-top-row">
+                <a href="index.html" class="brand-text" style="text-decoration: none; color: inherit;">Xach</a>
+                <button class="menu-toggle" id="menuToggle">Menu</button>
+            </div>
+            <div class="collapsed-bottom">
+                <span class="current-page" id="currentPage">Gatorade</span>
+            </div>
+        </div>
+        
+        <!-- Expanded State -->
+        <div class="menu-expanded" id="menuExpanded">
+            <div class="expanded-header">
+                <a href="index.html" class="brand-text" style="text-decoration: none; color: inherit;">Xach</a>
+                <button class="menu-close" id="menuClose">Menu</button>
+            </div>
+            
+            <div class="expanded-content">
+                <div class="bio-section">
+                    <p class="bio-text">Creative director currently building spatial intelligence experiences on <a href="https://www.spectacles.com/" target="_blank" style="color: inherit; text-decoration: underline;">Spectacles</a> at Snapchat's Innovation Studio</p>
+                </div>
+                
+                <div class="contact-section">
+                    <div class="contact-item email-copy" id="emailCopy">
+                        <span class="email-text">Email</span>
+                        <span class="copy-icon" style="display: none;">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </span>
+                        <span class="copy-text" style="display: none;">Copy Email</span>
+                        <div class="success-popup" id="successPopup">Email copied!</div>
+                    </div>
+                    <a href="https://instagram.com/xach" class="contact-item">Instagram</a>
+                </div>
+                
+                <div class="work-section">
+                    <ul class="work-list">
+                        <li class="work-item">
+                            <div class="work-thumbnail"><img src="assets/images/thumbnails/gatorade.svg" alt="Gatorade" /></div>
+                            <a href="project.html?project=Gatorade" class="work-link">Gatorade</a>
+                        </li>
+                        <li class="work-item">
+                            <div class="work-thumbnail"><img src="assets/images/thumbnails/hotones.png" alt="Hot Ones" /></div>
+                            <a href="project.html?project=Hot%20Ones" class="work-link">Hot Ones</a>
+                        </li>
+                        <li class="work-item">
+                            <div class="work-thumbnail"><img src="assets/images/thumbnails/mcdonalds.svg" alt="McDonaldland" /></div>
+                            <a href="project.html?project=McDonaldland" class="work-link">McDonaldland</a>
+                        </li>
+                        <li class="work-item">
+                            <div class="work-thumbnail"><img src="assets/images/thumbnails/coke.svg" alt="Coca-Cola" /></div>
+                            <a href="project.html?project=Coca-Cola" class="work-link">Coca-Cola</a>
+                        </li>
+                        <li class="work-item">
+                            <div class="work-thumbnail"><img src="assets/images/thumbnails/directing.jpg" alt="Directing Reel" /></div>
+                            <a href="project.html?project=Directing%20Reel" class="work-link">Directing Reel</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menu Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const menuClose = document.getElementById('menuClose');
+            const menuCollapsed = document.getElementById('menuCollapsed');
+            const menuExpanded = document.getElementById('menuExpanded');
+            const floatingMenu = document.getElementById('floatingMenu');
+            
+            // Toggle to expanded state
+            menuToggle.addEventListener('click', function() {
+                floatingMenu.classList.add('expanded');
+                menuCollapsed.style.display = 'none';
+                menuExpanded.style.display = 'block';
+            });
+            
+            // Toggle to collapsed state
+            menuClose.addEventListener('click', function() {
+                floatingMenu.classList.remove('expanded');
+                menuCollapsed.style.display = 'flex';
+                menuExpanded.style.display = 'none';
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!floatingMenu.contains(e.target)) {
+                    floatingMenu.classList.remove('expanded');
+                    menuCollapsed.style.display = 'flex';
+                    menuExpanded.style.display = 'none';
+                }
+            });
+            
+            // Prevent menu from closing when clicking inside
+            floatingMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            // Handle responsive brand text
+            function updateBrandText() {
+                const brandTexts = document.querySelectorAll('.brand-text');
+                
+                brandTexts.forEach(brandText => {
+                    brandText.textContent = 'Xach';
+                });
+            }
+            
+            // Update on load and resize
+            updateBrandText();
+            window.addEventListener('resize', updateBrandText);
+            
+            // Initialize scroll animations
+            initializeScrollAnimations();
+            
+            // Content manager is initialized by content-loader.js
+            
+            // Initialize more projects menu
+            initializeMoreProjectsMenu();
+            
+            // Theme controller removed - now using Send a Painting link
+            
+            // Initialize scroll indicator
+            initializeScrollIndicator();
+            
+            // Initialize Gatorade dynamic heights
+            initializeGatoradeHeights();
+            
+            // Initialize email copy functionality
+            initializeEmailCopy();
+        });
+        
+        // Scroll Animation Functionality
+        function initializeScrollAnimations() {
+            const animateElements = document.querySelectorAll('.scroll-animate');
+            
+            // Create intersection observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add animation class when element comes into view
+                        entry.target.classList.add('animate-in');
+                        // Optional: Stop observing after animation triggers
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1, // Trigger when 10% of element is visible
+                rootMargin: '0px 0px -50px 0px' // Trigger slightly before element fully enters viewport
+            });
+            
+            // Observe all elements with scroll-animate class
+            animateElements.forEach(element => {
+                observer.observe(element);
+                          });
+          }
+          
+          // More Projects Menu Functionality
+          function initializeMoreProjectsMenu() {
+              const moreProjectsToggle = document.getElementById('moreProjectsToggle');
+              const moreProjectsClose = document.getElementById('moreProjectsClose');
+              const moreProjectsCollapsed = document.getElementById('moreProjectsCollapsed');
+              const moreProjectsExpanded = document.getElementById('moreProjectsExpanded');
+              const moreProjectsMenu = document.getElementById('moreProjectsMenu');
+              
+              let isExpanded = false;
+              let menuPosition = 0;
+              
+              // Function to collapse menu
+              function collapseMenu() {
+                  moreProjectsCollapsed.style.display = 'flex';
+                  moreProjectsExpanded.classList.remove('show');
+                  isExpanded = false;
+              }
+              
+              // Function to expand menu
+              function expandMenu() {
+                  moreProjectsCollapsed.style.display = 'none';
+                  moreProjectsExpanded.classList.add('show');
+                  isExpanded = true;
+                  // Store current scroll position when menu opens
+                  menuPosition = window.pageYOffset;
+              }
+              
+              // Toggle to expanded state
+              moreProjectsToggle.addEventListener('click', function() {
+                  expandMenu();
+              });
+              
+              // Toggle to collapsed state
+              moreProjectsClose.addEventListener('click', function() {
+                  collapseMenu();
+              });
+              
+              // Close menu when clicking outside
+              document.addEventListener('click', function(e) {
+                  if (!moreProjectsMenu.contains(e.target)) {
+                      collapseMenu();
+                  }
+              });
+              
+              // Prevent menu from closing when clicking inside
+              moreProjectsMenu.addEventListener('click', function(e) {
+                  e.stopPropagation();
+              });
+              
+              // Scroll-based collapse: collapse if scrolled up too far from menu position
+              window.addEventListener('scroll', function() {
+                  if (isExpanded) {
+                      const currentScroll = window.pageYOffset;
+                      const scrollDifference = menuPosition - currentScroll;
+                      
+                      // If scrolled up more than 200px from where menu was opened, collapse it
+                      if (scrollDifference > 200) {
+                          collapseMenu();
+                      }
+                  }
+              });
+              
+              // Highlight current project
+              const urlParams = new URLSearchParams(window.location.search);
+              const currentProject = urlParams.get('project');
+              const projectLinks = document.querySelectorAll('.more-projects-item');
+              
+              projectLinks.forEach(link => {
+                  const href = link.getAttribute('href');
+                  const isCurrentPage = (currentProject && href.includes(currentProject)) || 
+                                       (!currentProject && href === 'index.html');
+                  
+                  if (isCurrentPage) {
+                      link.style.backgroundColor = '#ccff00';
+                  }
+              });
+          }
+
+        // Dynamic Height Adjustment for Gatorade Content
+        function adjustGatoradeImageHeights() {
+            const video = document.querySelector('#gatoradeContent video');
+            const topContainer = document.getElementById('topImageContainer');
+            const bottomContainer = document.getElementById('bottomImageContainer');
+            
+            if (video && topContainer && bottomContainer) {
+                const videoHeight = video.offsetHeight;
+                const gap = 20; // margin-top between containers
+                
+                // Calculate heights: 60% for top, 40% for bottom (minus gap)
+                const topHeight = Math.floor((videoHeight - gap) * 0.6);
+                const bottomHeight = Math.floor((videoHeight - gap) * 0.4);
+                
+                topContainer.style.height = topHeight + 'px';
+                bottomContainer.style.height = bottomHeight + 'px';
+            }
+        }
+        
+        // Initialize height adjustment when video loads
+        function initializeGatoradeHeights() {
+            const video = document.querySelector('#gatoradeContent video');
+            if (video) {
+                // Adjust when video metadata loads
+                video.addEventListener('loadedmetadata', adjustGatoradeImageHeights);
+                // Adjust when video is ready
+                video.addEventListener('canplay', adjustGatoradeImageHeights);
+                // Adjust on window resize
+                window.addEventListener('resize', adjustGatoradeImageHeights);
+                // Try to adjust immediately if video is already loaded
+                if (video.readyState >= 1) {
+                    setTimeout(adjustGatoradeImageHeights, 100);
+                }
+            }
+        }
+
+        // Theme controller functionality removed - replaced with Send a Painting link
+
+        // Scroll Indicator Functionality
+        function initializeScrollIndicator() {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            
+            if (!scrollIndicator) return;
+            
+            // Function to handle scroll indicator movement and opacity
+            function handleScrollIndicator() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Move indicator down with scroll (parallax effect)
+                const moveAmount = scrollTop * 0.3;
+                
+                // Calculate opacity based on scroll position (fade out at 200px)
+                const opacity = Math.max(0, 1 - (scrollTop / 200));
+                
+                // Apply transform and opacity based on scroll, preserving backdrop-filter
+                scrollIndicator.style.transform = `translateX(-50%) translateY(${moveAmount}px)`;
+                scrollIndicator.style.opacity = opacity;
+                
+                // Force backdrop-filter to persist
+                const scrollText = scrollIndicator.querySelector('.scroll-text');
+                if (scrollText && scrollIndicator.classList.contains('mcdonaldland-active')) {
+                    scrollText.style.backdropFilter = 'blur(15px) saturate(180%)';
+                    scrollText.style.webkitBackdropFilter = 'blur(15px) saturate(180%)';
+                }
+                
+                // Disable pointer events when fully transparent
+                if (opacity <= 0) {
+                    scrollIndicator.style.pointerEvents = 'none';
+                } else {
+                    scrollIndicator.style.pointerEvents = 'auto';
+                }
+                
+                // Stop bouncing animation when scrolling
+                if (scrollTop > 10) {
+                    scrollIndicator.style.animation = 'none';
+                } else {
+                    scrollIndicator.style.animation = 'scrollBounce 2s infinite';
+                }
+            }
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', handleScrollIndicator);
+            
+            // Click handler for the indicator itself
+            scrollIndicator.addEventListener('click', function() {
+                // Smooth scroll down to trigger the fade effect
+                window.scrollTo({
+                    top: 250,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Auto-playing Carousel Functionality for Center Frame
+        function initializeCenterCarousel() {
+            const track = document.getElementById('carouselTrack');
+            if (!track) return; // Exit if carousel doesn't exist
+            
+            let currentSlide = 0;
+            const totalSlides = 5;
+            
+            function updateCarousel() {
+                const translateX = -currentSlide * 20; // 20% per slide (100% / 5 slides)
+                track.style.transform = `translateX(${translateX}%)`;
+            }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }
+            
+            // Auto-play every 3 seconds
+            setInterval(nextSlide, 3000);
+        }
+
+        // Initialize carousel when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCenterCarousel();
+        });
+        
+        // Email Copy Functionality
+        function initializeEmailCopy() {
+            const emailCopy = document.getElementById('emailCopy');
+            const successPopup = document.getElementById('successPopup');
+            const emailAddress = 'xacbranch@gmail.com';
+            
+            if (!emailCopy || !successPopup) return;
+            
+            emailCopy.addEventListener('click', async function() {
+                try {
+                    // Copy email to clipboard
+                    await navigator.clipboard.writeText(emailAddress);
+                    
+                    // Show success popup
+                    successPopup.classList.add('show');
+                    
+                    // Hide popup after 2 seconds
+                    setTimeout(() => {
+                        successPopup.classList.remove('show');
+                    }, 2000);
+                    
+                } catch (err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = emailAddress;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    // Show success popup
+                    successPopup.classList.add('show');
+                    
+                    // Hide popup after 2 seconds
+                    setTimeout(() => {
+                        successPopup.classList.remove('show');
+                    }, 2000);
+                }
+            });
+        }
+      </script>
+    <!-- Main Content -->
+    <div class="sticky my-16 flex w-screen justify-center px-3 lg:my-32 lg:px-4">
+        <div class="flex max-w-[700px] flex-col items-start justify-center space-y-6">
+            <h2 class="text-large inline max-w-[700px]">
+                <span class="inline">
+                    <!-- Dynamic content will be loaded here by content-loader.js -->
+                </span>
+            </h2>
+            
+            <!-- Metadata -->
+            <div class="flex items-center space-x-4 whitespace-nowrap text-sm leading-[1em]" style="grid-template-columns: auto auto;">
+                <div class="grid gap-x-8 gap-y-0.5 text-sm leading-[1em]">
+                    <span><!-- Client --></span>
+                    <span><!-- Year --></span>
+                </div>
+            </div>
+            
+            <div class="grid gap-x-8 gap-y-0.5 text-sm leading-[1em]" style="grid-template-columns: auto auto;">
+                <div class="grid">
+                    <span><!-- Agency --></span>
+                    <span><!-- Agency Detail --></span>
+                </div>
+                <div class="grid">
+                    <span><!-- Partner --></span>
+                    <span><!-- Partner Detail --></span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Project-Specific Content -->
+    <div id="projectSpecificContent" class="w-full scroll-animate" style="padding: 40px 60px;">
+        <!-- Gatorade Content -->
+        <div id="gatoradeContent" style="display: none;">
+            <div class="caitlin-clark-container" style="display: flex; gap: 40px; align-items: stretch; width: 100%;">
+                <!-- Video Section -->
+                <div style="flex: 1; display: flex; flex-direction: column; min-width: 0; height: 100%;">
+                    <div style="position: relative; width: 100%; flex: 1; display: flex; align-items: flex-end;">
+                        <video 
+                            controls 
+                            autoplay 
+                            muted 
+                            loop
+                            preload="metadata"
+                            style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15);"
+                        >
+                            <source src="assets/images/projects/gatorade/videos/caitlinclark.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                
+                <!-- Image -->
+                <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; height: 100%;">
+                    <div id="topImageContainer" style="width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15);">
+                        <img 
+                            src="assets/images/projects/gatorade/caitlinclark_gatorade.webp" 
+                            alt="Caitlin Clark Gatorade Campaign" 
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                        />
+                    </div>
+                    <div style="flex: 1; display: flex; align-items: flex-end; margin-top: 20px;">
+                        <div id="bottomImageContainer" style="width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15);">
+                            <img 
+                                src="assets/images/projects/gatorade/pictures/caitlinclark_drink.png" 
+                                alt="Caitlin Clark Drinking Gatorade" 
+                                style="width: 100%; height: 100%; object-fit: cover;"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Instagram Button Section - Centered Below Two Columns -->
+            <div style="display: flex; justify-content: center; margin-top: 40px; width: 100%;">
+                <a 
+                    href="https://www.instagram.com/reel/C0whZp7p0tq/" 
+                    target="_blank" 
+                    class="neon-instagram-btn"
+                    style="
+                        display: inline-block;
+                        padding: 12px 20px;
+                        background: #ccff00;
+                        color: #000;
+                        text-decoration: none;
+                        border-radius: 0;
+                        font-family: 'ABCMonumentGrotesk-Medium', sans-serif;
+                        font-size: 12px;
+                        font-weight: 500;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        transition: all 0.3s ease;
+                        border: 1px solid #ccff00;
+                        box-shadow: 
+                            0 0 20px rgba(204, 255, 0, 0.4),
+                            0 0 40px rgba(204, 255, 0, 0.3),
+                            0 0 80px rgba(204, 255, 0, 0.2);
+                        animation: neonYellowPulse 2s ease-in-out infinite alternate;
+                    "
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 0 30px rgba(204, 255, 0, 0.6), 0 0 60px rgba(204, 255, 0, 0.4), 0 0 100px rgba(204, 255, 0, 0.3)'; this.style.background='#ffffff'; this.style.color='#000';"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 20px rgba(204, 255, 0, 0.4), 0 0 40px rgba(204, 255, 0, 0.3), 0 0 80px rgba(204, 255, 0, 0.2)'; this.style.background='#ccff00'; this.style.color='#000';"
+                >
+                    View on Instagram
+                </a>
+            </div>
+        </div>
+        
+
+        
+        <!-- Hot Ones Content -->
+        <div id="hotOnesContent" style="display: none; padding: 0; margin: 0;">
+            <img 
+                src="assets/images/projects/hotones/hotones_title.gif" 
+                alt="Hot Ones Title" 
+                style="width: 100%; height: auto; display: block; margin: 0; padding: 0;"
+            />
+            
+            <!-- Hot Ones GIF Grid -->
+            <div class="px-3 lg:px-4" style="padding-top: 40px; padding-bottom: 40px;">
+                <div style="display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 1200px; margin: 0 auto;">
+                    
+                    <!-- Top Row - DaBomb.gif -->
+                    <div style="width: 100%; display: flex; justify-content: center;">
+                        <img 
+                            src="assets/images/projects/hotones/dabomb.gif" 
+                            alt="Da Bomb" 
+                            style="width: 100%; height: auto; border-radius: 8px; max-width: 800px;"
+                        />
+                    </div>
+                    
+                                         <!-- Middle Row - 2 Square GIFs -->
+                     <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; width: 100%;">
+                         <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
+                             <img 
+                                 src="assets/images/projects/hotones/apollo.gif" 
+                                 alt="Apollo" 
+                                 style="width: 100%; height: auto; border-radius: 8px;"
+                             />
+                         </div>
+                         <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
+                             <img 
+                                 src="assets/images/projects/hotones/dragonintheclouds.gif" 
+                                 alt="Dragon In the Clouds" 
+                                 style="width: 100%; height: auto; border-radius: 8px;"
+                             />
+                         </div>
+                     </div>
+                     
+                     <!-- Game Show Sauces Row -->
+                     <div style="width: 100%; display: flex; justify-content: center;">
+                         <img 
+                             src="assets/images/projects/hotones/gameshowsauces.gif" 
+                             alt="Game Show Sauces" 
+                             style="width: 100%; height: auto; border-radius: 8px; max-width: 400px;"
+                         />
+                     </div>
+                    
+                    <!-- Bottom Row - HotOnes_Endcredits.webp -->
+                    <div style="width: 100%; display: flex; justify-content: center;">
+                        <img 
+                            src="assets/images/projects/hotones/hotones_endcredits.webp" 
+                            alt="Hot Ones End Credits" 
+                            style="width: 100%; height: auto; border-radius: 8px; max-width: 800px;"
+                        />
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <!-- Directing Reel Content -->
+        <div id="directingReelContent" style="display: none;">
+            <div style="padding: 40px 0; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);">
+                <div style="padding:56.25% 0 0 0;position:relative;">
+                    <iframe 
+                        src="https://player.vimeo.com/video/311828823?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+                        frameborder="0" 
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Coca-Cola Content -->
+        <div id="cocaColaContent" style="display: none;">
+            <!-- Vimeo Case Study Video -->
+            <div style="padding: 40px 0; width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);">
+                <div style="padding:56.25% 0 0 0;position:relative;">
+                    <iframe 
+                        src="https://player.vimeo.com/video/1050788994?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+                        frameborder="0" 
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    </iframe>
+                </div>
+            </div>
+            
+            <!-- Awards Grid -->
+            <div class="coca-cola-awards-grid">
+                <div class="award-item">
+                    <div class="award-name">Webby Awards</div>
+                    <div class="award-level">Nominee</div>
+                    <div class="award-category">Advertising, Media & PR</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-name">Shorty Awards</div>
+                    <div class="award-level">Honoree</div>
+                    <div class="award-category">Creative Use of Technology</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-name">The Drum Awards</div>
+                    <div class="award-level">Bronze</div>
+                    <div class="award-category">Technology Innovation</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-name">The FWA</div>
+                    <div class="award-level">Site of the Day</div>
+                    <div class="award-category"></div>
+                </div>
+                <div class="award-item">
+                    <div class="award-name">The Drum Awards Global</div>
+                    <div class="award-level">Silver</div>
+                    <div class="award-category">Use of AR/VR</div>
+                </div>
+                <div class="award-item">
+                    <div class="award-name">Digiday Technology Awards</div>
+                    <div class="award-level">Finalist</div>
+                    <div class="award-category">AR/VR</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- McDonaldland Reunion Video - Full Width -->
+    <div id="mcdonaldlandReunionVideo" style="display: none; padding: 40px 0;">
+        <img 
+            src="assets/images/projects/mcdonaldland/unnamed.png" 
+            alt="McDonaldland" 
+            style="width: 100vw !important; margin-left: calc(-50vw + 50%) !important; margin-right: calc(-50vw + 50%) !important; padding: 0 !important; display: block !important; box-sizing: border-box !important; height: auto;"
+        />
+    </div>
+    
+    <!-- McDonaldland AR Description Section -->
+    <div id="mcdonaldlandARSection" style="display: none; padding: 120px 0;" class="sticky flex w-screen justify-center px-3 lg:px-4">
+        <div class="flex max-w-[700px] flex-col items-start justify-center space-y-6">
+            <p class="text-large inline max-w-[700px]" id="mcdonaldlandARText">
+                The AR super lens delivered 17+ immersive experiences, from interactive games to digitally transforming McDonald's restaurants into McDonaldland
+            </p>
+        </div>
+    </div>
+    
+    <!-- McDonaldland Games Video -->
+    <div id="mcdonaldlandGamesVideo" style="display: none; padding: 40px 60px;">
+        <video 
+            autoplay 
+            muted 
+            loop 
+            preload="metadata"
+            style="width: 100%; height: auto; display: block; border-radius: 8px;"
+        >
+            <source src="assets/images/projects/mcdonaldland/mcd_games.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <!-- Additional Content Section -->
+    <div id="secondaryTitleSection" class="sticky my-16 flex w-screen justify-center px-3 lg:my-32 lg:px-4" style="display: none;">
+        <div class="flex max-w-[700px] flex-col items-start justify-center space-y-6">
+            <h3 class="text-large inline max-w-[700px]">
+                <span class="inline" id="secondaryTitle">
+                    <!-- Dynamic secondary title content will be loaded here -->
+                </span>
+            </h3>
+        </div>
+    </div>
+    
+    <!-- Shedeur Sanders 3-Column Section (for Gatorade) -->
+    <div id="gatoradeCarouselSection" class="gatorade-simple-section" style="display: none;">
+        <div class="gatorade-simple-grid">
+            <!-- Left Side - Shedeur Image -->
+            <div class="gatorade-left-image">
+                <img src="assets/images/projects/gatorade/pictures/shedeur01.png" alt="Shedeur Sanders" class="shedeur-natural">
+            </div>
+            
+            <!-- Center - Single Cleat Image -->
+            <div class="gatorade-center-image">
+                <img src="assets/images/projects/gatorade/ac9c8f49-202a-4d51-89ca-c0ffa610a617_rw_1920.jpg" alt="Heat Reactive Cleats" class="cleat-natural">
+            </div>
+            
+            <!-- Right Side - Mache Video -->
+            <div class="gatorade-right-video">
+                <video controls autoplay muted loop preload="metadata" class="mache-natural">
+                    <source src="assets/images/projects/gatorade/videos/mache01.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+    
+    <!-- McDonaldland Content - Below Secondary Title -->
+    <div id="mcdonaldlandContent" style="display: none;">
+        <!-- McDonaldland GIF Grid -->
+        <div style="padding: 40px 15px;">
+            <div class="mcdonaldland-grid" style="
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 3px;
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
+            ">
+                <!-- Row 1 - Randomized -->
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0021_Smiley-Sun.png" alt="Smiley Sun" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/grimace01.gif" alt="Grimace 01" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/fryfrenzy.gif" alt="Fry Frenzy" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0001_McNugget-Buddies.png" alt="McNugget Buddies" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/pinkboat.gif" alt="Pink Boat" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/Mayor.gif" alt="Mayor" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/orangefry.gif" alt="Orange Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                
+                <!-- Row 2 - Randomized -->
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/bluefry.gif" alt="Blue Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0018_Fry-Thatch.png" alt="Fry Thatch" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/welcometomcdonaldland.png" alt="Welcome to McDonaldland" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/hamburglar.gif" alt="Hamburglar" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/filet01.gif" alt="Filet 01" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0009_Sundae-dog.png" alt="Sundae Dog" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/boat.gif" alt="Boat" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                
+                <!-- Row 3 - Randomized -->
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/mcdonaldsign.gif" alt="McDonald Sign" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/applepieorchard.gif" alt="Apple Pie Orchard" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0014_Officer-Big-Mac.png" alt="Officer Big Mac" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/yellowfry.gif" alt="Yellow Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/dreamflight.png" alt="Dream Flight" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/greenfry.gif" alt="Green Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/grimaceislanddash.gif" alt="Grimace Island Dash" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                
+                <!-- Row 4 - Randomized -->
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/ronald.gif" alt="Ronald" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/flower.gif" alt="Flower" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0011_Captain-Crook.png" alt="Captain Crook" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/lilypad.gif" alt="Lily Pad" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/burgerpatch.png" alt="Burger Patch" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/Mayorsmagicglasses.gif" alt="Mayors Magic Glasses" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/filet02.gif" alt="Filet 02" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                
+                <!-- Row 5 - Randomized -->
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/pancake.png" alt="Pancake" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0004_Grimace-+-Grimace-Island.png" alt="Grimace + Grimace Island" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/splash.gif" alt="Splash" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/birdie.gif" alt="Birdie" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/mcdonaldfry.gif" alt="McDonald Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/jointhemcsquad.png" alt="Join the MC Squad" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+                <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
+                    <img src="assets/images/projects/mcdonaldland/grid/grimace02.gif" alt="Grimace 02" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                </div>
+            </div>
+        </div>
+        
+        <!-- McDonaldland Extended Description -->
+        <div class="sticky my-16 flex w-screen justify-center px-3 lg:my-32 lg:px-4">
+            <div class="flex max-w-[700px] flex-col items-start justify-center space-y-6">
+                <p class="text-large inline max-w-[700px]" id="mcdonaldlandExtendedText">
+                    The campaign went live in all 14,000 U.S. McDonald's locations, where opening Snapchat in-store instantly triggered the experience to the top of your carousel. The geofencing tech was so effective Snap patented it, introducing a new ad product for all brands. For the first time, AR could be triggered nationwide at scale, seamlessly merging storytelling with real-world locations.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Custom Media Layout: Center 4:5 with Side 9:16 frames - Gatorade Only -->
+    <div id="gatoradeCarouselSection" class="custom-media-layout scroll-animate" style="display: none;">
+        <div class="side-frame side-frame-left" style="position: relative; overflow: hidden;">
+            <img src="assets/images/projects/gatorade/pictures/shedeur01.png" alt="Shedeur Sanders" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="center-frame center-frame-main" style="position: relative; overflow: hidden;">
+            <div class="carousel-track" id="carouselTrack" style="display: flex; transition: transform 1s ease; height: 100%; width: 500%;">
+                <div class="carousel-slide" style="flex: 0 0 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/images/projects/gatorade/7bda8507-1e0f-4ea2-9ecd-228842b2b02a_rw_1200.jpg" alt="Cleat Design 1" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="carousel-slide" style="flex: 0 0 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/images/projects/gatorade/ac9c8f49-202a-4d51-89ca-c0ffa610a617_rw_1920.jpg" alt="Cleat Design 2" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="carousel-slide" style="flex: 0 0 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/images/projects/gatorade/ae0c9c60-f8cf-4eb3-b0d3-95f04b75f471_rw_1200.jpg" alt="Cleat Design 3" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="carousel-slide" style="flex: 0 0 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/images/projects/gatorade/c3e08ea3-6272-458c-9ed5-515990011e72_rw_1920.jpg" alt="Cleat Design 4" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="carousel-slide" style="flex: 0 0 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/images/projects/gatorade/d806bcad-a827-4bce-9b4e-b79773488b04_rw_1200.jpg" alt="Cleat Design 5" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+        <div class="side-frame side-frame-right" style="position: relative; overflow: hidden;">
+            <video autoplay muted loop controls style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="assets/images/projects/gatorade/videos/mache01.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+    
+    <!-- More Projects Menu -->
+    <div class="more-projects-menu" id="moreProjectsMenu">
+        <!-- Collapsed State -->
+        <div class="more-projects-collapsed" id="moreProjectsCollapsed">
+            <button class="more-projects-toggle" id="moreProjectsToggle">More projects</button>
+        </div>
+        
+        <!-- Expanded State -->
+        <div class="more-projects-expanded" id="moreProjectsExpanded">            
+            <div class="more-projects-content">
+                <div class="more-projects-list">
+                    <a href="index.html" class="more-projects-item">
+                        <div class="more-projects-thumbnail">H</div>
+                        <span class="more-projects-link">Home</span>
+                    </a>
+                    <a href="project.html?project=Gatorade" class="more-projects-item">
+                        <div class="more-projects-thumbnail"><img src="assets/images/thumbnails/gatorade.svg" alt="Gatorade" /></div>
+                        <span class="more-projects-link">Gatorade</span>
+                    </a>
+                    <a href="project.html?project=Hot%20Ones" class="more-projects-item">
+                        <div class="more-projects-thumbnail"><img src="assets/images/thumbnails/hotones.png" alt="Hot Ones" /></div>
+                        <span class="more-projects-link">Hot Ones</span>
+                    </a>
+                    <a href="project.html?project=McDonaldland" class="more-projects-item">
+                        <div class="more-projects-thumbnail"><img src="assets/images/thumbnails/mcdonalds.svg" alt="McDonaldland" /></div>
+                        <span class="more-projects-link">McDonaldland</span>
+                    </a>
+                    <a href="project.html?project=Coca-Cola" class="more-projects-item">
+                        <div class="more-projects-thumbnail"><img src="assets/images/thumbnails/coke.svg" alt="Coca-Cola" /></div>
+                        <span class="more-projects-link">Coca-Cola</span>
+                    </a>
+                    <a href="project.html?project=Directing%20Reel" class="more-projects-item">
+                        <div class="more-projects-thumbnail"><img src="assets/images/thumbnails/directing.jpg" alt="Directing Reel" /></div>
+                        <span class="more-projects-link">Directing Reel</span>
+                    </a>
+                </div>
+            </div>
+            
+            <button class="more-projects-close" id="moreProjectsClose">More projects</button>
+        </div>
+    </div>
+
+    <!-- Scroll Down Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator">
+        <span class="scroll-text">Scroll down</span>
+        <div class="scroll-arrow"></div>
+    </div>
+</body>
+</html>

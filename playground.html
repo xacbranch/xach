@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xach AI - Chat Interface</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+            font-size: 11px;
+            background: linear-gradient(135deg, #4a90e2, #7bb3f0);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Main AIM Window */
+        .aim-window {
+            width: 400px;
+            height: 500px;
+            background: #c0c0c0;
+            border: 2px outset #c0c0c0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Title Bar */
+        .title-bar {
+            background: linear-gradient(90deg, #0054a6, #4a90e2);
+            color: white;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #000040;
+        }
+
+        .title-text {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .aim-icon {
+            width: 16px;
+            height: 16px;
+            background: #ffff00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: black;
+            font-weight: bold;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .window-btn {
+            width: 16px;
+            height: 14px;
+            background: #c0c0c0;
+            border: 1px outset #c0c0c0;
+            font-size: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .window-btn:active {
+            border: 1px inset #c0c0c0;
+        }
+
+        /* Chat Area */
+        .chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            margin: 4px;
+            border: 2px inset #c0c0c0;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 8px;
+            overflow-y: auto;
+            background: white;
+            font-family: 'Times New Roman', serif;
+            font-size: 12px;
+            line-height: 1.4;
+            border-bottom: 1px solid #c0c0c0;
+        }
+
+        .message {
+            margin-bottom: 4px;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            color: #000080;
+        }
+
+        .bot-message {
+            color: #800000;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        /* Input Area */
+        .input-container {
+            background: #c0c0c0;
+            padding: 4px;
+            border-top: 1px solid #808080;
+        }
+
+        .input-toolbar {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 4px;
+            padding: 2px;
+            background: #e0e0e0;
+            border: 1px inset #c0c0c0;
+        }
+
+        .toolbar-btn {
+            width: 20px;
+            height: 20px;
+            background: #c0c0c0;
+            border: 1px outset #c0c0c0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .toolbar-btn:active {
+            border: 1px inset #c0c0c0;
+        }
+
+        .message-input {
+            width: 100%;
+            height: 60px;
+            border: 2px inset #c0c0c0;
+            padding: 4px;
+            font-family: 'Times New Roman', serif;
+            font-size: 12px;
+            resize: none;
+            background: white;
+        }
+
+        .message-input:focus {
+            outline: none;
+        }
+
+        /* Bottom Bar */
+        .bottom-bar {
+            background: #c0c0c0;
+            padding: 4px 8px;
+            border-top: 1px solid #808080;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 4px;
+        }
+
+        .status-icon {
+            width: 16px;
+            height: 16px;
+            background: #ffff00;
+            border: 1px outset #c0c0c0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+        }
+
+        /* Scrollbar styling for webkit browsers */
+        .chat-messages::-webkit-scrollbar {
+            width: 16px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: #c0c0c0;
+            border: 1px inset #c0c0c0;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #808080;
+            border: 1px outset #808080;
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            color: #666;
+            font-style: italic;
+            font-size: 11px;
+        }
+
+        /* API Key Input */
+        .api-setup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #c0c0c0;
+            border: 2px outset #c0c0c0;
+            padding: 20px;
+            z-index: 1000;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .api-setup input {
+            width: 300px;
+            padding: 4px;
+            border: 2px inset #c0c0c0;
+            margin: 8px 0;
+        }
+
+        .api-setup button {
+            background: #c0c0c0;
+            border: 2px outset #c0c0c0;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .api-setup button:active {
+            border: 2px inset #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+    <!-- API Key Setup Modal -->
+    <div class="api-setup" id="apiSetup">
+        <div style="text-align: center; margin-bottom: 12px; font-weight: bold;">
+            Enter OpenAI API Key
+        </div>
+        <input type="password" id="apiKeyInput" placeholder="sk-...">
+        <div style="text-align: center; margin-top: 12px;">
+            <button onclick="saveApiKey()">Connect</button>
+        </div>
+        <div style="font-size: 9px; color: #666; margin-top: 8px; text-align: center;">
+            Your key is stored locally and never shared
+        </div>
+    </div>
+
+    <!-- Main AIM Window -->
+    <div class="aim-window" id="aimWindow" style="display: none;">
+        <!-- Title Bar -->
+        <div class="title-bar">
+            <div class="title-text">
+                <div class="aim-icon">●</div>
+                <span>Xach AI - Chat Interface</span>
+            </div>
+            <div class="window-controls">
+                <div class="window-btn">_</div>
+                <div class="window-btn">□</div>
+                <div class="window-btn" onclick="resetApiKey()">×</div>
+            </div>
+        </div>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <span class="username">Xach AI:</span> sup. ready to talk shop or just here to waste my time?
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="input-container">
+                <div class="input-toolbar">
+                    <div class="toolbar-btn" title="Bold">B</div>
+                    <div class="toolbar-btn" title="Italic">I</div>
+                    <div class="toolbar-btn" title="Underline">U</div>
+                    <div class="toolbar-btn" title="Link">🔗</div>
+                    <div class="toolbar-btn" title="Emoticon">😊</div>
+                    <div class="toolbar-btn" title="Font">A</div>
+                </div>
+                <textarea 
+                    class="message-input" 
+                    id="messageInput" 
+                    placeholder="Type your message here..."
+                    onkeydown="handleKeyPress(event)"></textarea>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="bottom-bar">
+            <div class="status-icons">
+                <div class="status-icon" title="Warning Level">!</div>
+                <div class="status-icon" title="Block">🚫</div>
+                <div class="status-icon" title="Expressions">😀</div>
+                <div class="status-icon" title="Games">🎮</div>
+                <div class="status-icon" title="Video">📹</div>
+                <div class="status-icon" title="Talk">🎤</div>
+            </div>
+            <div style="color: #666;">Xach AI Online: 100%</div>
+        </div>
+    </div>
+
+    <script>
+        // No API key needed on client-side - all handled securely by backend!
+        let messageCount = 0;
+        let chatLimitReached = false;
+        const sessionId = Math.random().toString(36).substring(2, 15); // Generate unique session ID
+
+        function saveApiKey() {
+            // Not needed anymore - keeping for compatibility
+        }
+
+        function resetApiKey() {
+            // Not needed anymore - keeping for compatibility
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        function addMessage(sender, message, isUser = false) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.innerHTML = `<span class="username">${sender}:</span> ${message}`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message typing-indicator';
+            typingDiv.id = 'typing';
+            typingDiv.innerHTML = '<span class="username">Xach AI:</span> is typing...';
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typing = document.getElementById('typing');
+            if (typing) {
+                typing.remove();
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message || chatLimitReached) return;
+
+            // Add user message
+            addMessage('You', message, true);
+            input.value = '';
+            messageCount++;
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            try {
+                // Send to our secure backend instead of directly to OpenAI
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        sessionId: sessionId
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                removeTypingIndicator();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                addMessage('Xach AI', data.message);
+
+                // Check if limit reached
+                if (data.limitReached) {
+                    chatLimitReached = true;
+                    disableChat();
+                }
+
+            } catch (error) {
+                removeTypingIndicator();
+                addMessage('System', `Error: ${error.message}. Check if the server is running.`);
+            }
+        }
+
+        function disableChat() {
+            const input = document.getElementById('messageInput');
+            input.disabled = true;
+            input.style.backgroundColor = '#e0e0e0';
+            input.style.color = '#999';
+            input.placeholder = 'Chat limit reached - Xach AI has left the building';
+        }
+
+        // Initialize
+        window.onload = function() {
+            // Skip API setup since we have the key hardcoded
+            document.getElementById('apiSetup').style.display = 'none';
+            document.getElementById('aimWindow').style.display = 'flex';
+        };
+    </script>
+</body>
+</html>

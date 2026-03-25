@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xach - Creative Director</title>
+    <link rel="stylesheet" href="styles.css?v=32">
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.48/build/spline-viewer.js"></script>
+    <style>
+        /* Landing page specific styles */
+        body {
+            padding-top: 0; /* Remove padding for full-screen 3D scene */
+            /* Removed overflow: hidden to allow scrolling */
+        }
+        
+        /* Full-screen Spline container - matches React component structure */
+        main.spline-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1; /* Behind the menu */
+            pointer-events: auto; /* Ensure Spline can receive interactions */
+            margin: 0;
+            padding: 0;
+        }
+        
+        spline-viewer {
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: auto; /* Allow Spline interactions */
+        }
+        
+        /* Ensure menu stays on top of 3D scene */
+        .floating-menu {
+            z-index: 1000; /* Above the 3D scene */
+        }
+        
+        /* Scroll Down Indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 500; /* Above spline, below menu */
+            font-family: 'ABCMonumentGrotesk-Medium', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.1s ease;
+            animation: scrollBounce 2s infinite;
+            text-align: center;
+        }
+        
+        .scroll-indicator.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-8px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-4px);
+            }
+        }
+        
+        .scroll-indicator:hover {
+            transform: translateX(-50%) translateY(-2px);
+        }
+        
+        /* Custom down arrow */
+        .scroll-arrow {
+            display: block;
+            margin: 8px auto 0;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid #fff;
+            transition: transform 0.3s ease;
+        }
+        
+        .scroll-indicator:hover .scroll-arrow {
+            transform: translateY(2px);
+        }
+        
+        /* Contact Section Adjustments */
+        .contact-item {
+            font-size: 12px !important; /* Reduced from 16px by ~25% */
+            height: 22px !important; /* Reduced from 28px */
+        }
+        
+        /* Email Copy Functionality */
+        .email-copy {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .email-copy:hover,
+        .contact-item:hover {
+            background-color: #ccff00 !important;
+        }
+        
+        .email-copy:hover .email-text {
+            display: none;
+        }
+        
+        .email-copy:hover .copy-text,
+        .email-copy:hover .copy-icon {
+            display: inline !important;
+        }
+        
+        .email-copy:hover .copy-icon {
+            margin-right: 6px;
+        }
+        
+        .email-copy.copied {
+            background-color: #ccff00 !important;
+        }
+        
+        .email-copy.copied .email-text {
+            display: none;
+        }
+        
+        .email-copy.copied .copy-text {
+            display: inline !important;
+        }
+        
+        .email-copy.copied .copy-icon {
+            display: inline !important;
+        }
+        
+        /* Success Popup */
+        .success-popup {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ccff00;
+            color: #111;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+        
+        .success-popup.show {
+            opacity: 1;
+        }
+        
+        .success-popup::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-top-color: #ccff00;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Menu -->
+    <div class="floating-menu" id="floatingMenu">
+        <!-- Collapsed State -->
+        <div class="menu-collapsed" id="menuCollapsed">
+            <div class="collapsed-top-row">
+                <span class="brand-text">Xach</span>
+                <button class="menu-toggle" id="menuToggle">Menu</button>
+            </div>
+            <div class="collapsed-bottom">
+                <span class="current-page" id="currentPage">Home</span>
+            </div>
+        </div>
+        
+        <!-- Expanded State -->
+        <div class="menu-expanded" id="menuExpanded">
+            <div class="expanded-header">
+                <span class="brand-text">Xach</span>
+                <button class="menu-close" id="menuClose">Menu</button>
+            </div>
+            
+            <div class="expanded-content">
+                <div class="bio-section">
+                    <p class="bio-text">Creative director currently building spatial intelligence experiences on Spectacles at Snapchat's Innovation Studio</p>
+                </div>
+                
+                <div class="contact-section">
+                    <div class="contact-item email-copy" id="emailCopy">
+                        <span class="email-text">Email</span>
+                        <span class="copy-icon" style="display: none;">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </span>
+                        <span class="copy-text" style="display: none;">Copy Email</span>
+                        <div class="success-popup" id="successPopup">Email copied!</div>
+                    </div>
+                    <a href="https://instagram.com/xach" class="contact-item">Instagram</a>
+                </div>
+                
+                <div class="work-section">
+                    <ul class="work-list">
+                        <li class="work-item">
+                            <div class="work-thumbnail"><img src="assets/images/thumbnails/gatorade.svg" alt="Gatorade" /></div>
+                            <a href="project.html?project=Gatorade" class="work-link">Gatorade</a>
+                        </li>
+                        <li class="work-item">
+                            <div class="work-thumbnail"><img src="assets/images/thumbnails/hotones.png" alt="Hot Ones" /></div>
+                            <a href="project.html?project=Hot%20Ones" class="work-link">Hot Ones</a>
+                        </li>
+                        <li class="work-item">
+                            <div class="work-thumbnail"><img src="assets/images/thumbnails/mcdonalds.svg" alt="McDonaldland" /></div>
+                            <a href="project.html?project=McDonaldland" class="work-link">McDonaldland</a>
+                        </li>
+                        <li class="work-item">
+                            <div class="work-thumbnail"><img src="assets/images/thumbnails/coke.svg" alt="Coca-Cola" /></div>
+                            <a href="project.html?project=Coca-Cola" class="work-link">Coca-Cola</a>
+                        </li>
+                        <li class="work-item">
+                            <div class="work-thumbnail"><img src="assets/images/thumbnails/directing.jpg" alt="Directing Reel" /></div>
+                            <a href="project.html?project=Directing%20Reel" class="work-link">Directing Reel</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full-screen Spline 3D Scene -->
+    <main class="spline-container">
+        <spline-viewer loading-anim-type="spinner-small-dark" url="https://prod.spline.design/VS7Lu12HoCW5N1pK/scene.splinecode"></spline-viewer>
+    </main>
+
+    <!-- Scroll Down Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator">
+        Scroll down
+        <div class="scroll-arrow"></div>
+    </div>
+
+    <!-- Scrollable content to enable scroll detection -->
+    <div style="height: 100vh; position: relative; z-index: 2; background: transparent; pointer-events: none;"></div>
+    <div style="height: 200vh; position: relative; z-index: 2; background: transparent; pointer-events: none;"></div>
+
+    <script>
+        // Menu Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const menuClose = document.getElementById('menuClose');
+            const menuCollapsed = document.getElementById('menuCollapsed');
+            const menuExpanded = document.getElementById('menuExpanded');
+            const floatingMenu = document.getElementById('floatingMenu');
+            
+            // Toggle to expanded state
+            menuToggle.addEventListener('click', function() {
+                floatingMenu.classList.add('expanded');
+                menuCollapsed.style.display = 'none';
+                menuExpanded.style.display = 'block';
+            });
+            
+            // Toggle to collapsed state
+            menuClose.addEventListener('click', function() {
+                floatingMenu.classList.remove('expanded');
+                menuCollapsed.style.display = 'flex';
+                menuExpanded.style.display = 'none';
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!floatingMenu.contains(e.target)) {
+                    floatingMenu.classList.remove('expanded');
+                    menuCollapsed.style.display = 'flex';
+                    menuExpanded.style.display = 'none';
+                }
+            });
+            
+            // Prevent menu from closing when clicking inside
+            floatingMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            // Handle responsive brand text
+            function updateBrandText() {
+                const brandTexts = document.querySelectorAll('.brand-text');
+                
+                brandTexts.forEach(brandText => {
+                    brandText.textContent = 'Xach';
+                });
+            }
+            
+            // Update on load and resize
+            updateBrandText();
+            window.addEventListener('resize', updateBrandText);
+            
+            // Initialize scroll indicator
+            initializeScrollIndicator();
+            
+            // Initialize email copy functionality
+            initializeEmailCopy();
+            
+            // Theme controller removed - now using Send a Painting link
+        });
+        
+        // Scroll Indicator Functionality
+        function initializeScrollIndicator() {
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            
+            // Function to handle scroll indicator movement and opacity
+            function handleScrollIndicator() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Move indicator down with scroll (parallax effect)
+                const moveAmount = scrollTop * 0.3;
+                
+                // Calculate opacity based on scroll position (fade out at 200px)
+                const opacity = Math.max(0, 1 - (scrollTop / 200));
+                
+                // Apply transform and opacity based on scroll
+                scrollIndicator.style.transform = `translateX(-50%) translateY(${moveAmount}px)`;
+                scrollIndicator.style.opacity = opacity;
+                
+                // Disable pointer events when fully transparent
+                if (opacity <= 0) {
+                    scrollIndicator.style.pointerEvents = 'none';
+                } else {
+                    scrollIndicator.style.pointerEvents = 'auto';
+                }
+                
+                // Stop bouncing animation when scrolling
+                if (scrollTop > 10) {
+                    scrollIndicator.style.animation = 'none';
+                } else {
+                    scrollIndicator.style.animation = 'scrollBounce 2s infinite';
+                }
+            }
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', handleScrollIndicator);
+            
+            // Click handler for the indicator itself
+            scrollIndicator.addEventListener('click', function() {
+                // Smooth scroll down to trigger the fade effect
+                window.scrollTo({
+                    top: 250,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Email Copy Functionality
+        function initializeEmailCopy() {
+            const emailCopy = document.getElementById('emailCopy');
+            const successPopup = document.getElementById('successPopup');
+            const emailAddress = 'xacbranch@gmail.com';
+            
+            if (!emailCopy || !successPopup) return;
+            
+            emailCopy.addEventListener('click', async function() {
+                try {
+                    // Copy email to clipboard
+                    await navigator.clipboard.writeText(emailAddress);
+                    
+                    // Show success popup
+                    successPopup.classList.add('show');
+                    
+                    // Hide popup after 2 seconds
+                    setTimeout(() => {
+                        successPopup.classList.remove('show');
+                    }, 2000);
+                    
+                } catch (err) {
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = emailAddress;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    // Show success popup
+                    successPopup.classList.add('show');
+                    
+                    // Hide popup after 2 seconds
+                    setTimeout(() => {
+                        successPopup.classList.remove('show');
+                    }, 2000);
+                }
+            });
+        }
+
+        // Theme controller functionality removed - replaced with Send a Painting link
+    </script>
+</body>
+</html>

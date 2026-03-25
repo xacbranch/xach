@@ -1,0 +1,52 @@
+{
+  "projects": {
+    "Gatorade": {
+      "title": "The video began as a simple announcement of Caitlin Clark signing with Gatorade but quickly went viral, generating 3.1 billion earned impressions and nearly 30 million Instagram plays. Its success turned it into a national TV spot, airing during Clark's final Iowa home game and the record-breaking Iowa vs. UConn Sweet 16.\n\nOff the momentum, Gatorade expanded the idea into a broader campaign, adopting \"You Can Too\" as a platform across NCAA women's basketball.",
+      "secondaryTitle": "Oh, and while we're on the topic of college phenoms signed by Gatorade, I also designed these 1 of 1 heat reactive cleats (that Mache executed) for Shedeur Sanders for his final game against USC",
+      "client": "Gatorade",
+      "year": "2023",
+      "agency": "Agency",
+      "agencyDetail": "Role",
+      "partner": "Laundry Service",
+      "partnerDetail": "Sr.  Art Director"
+    },
+    "Hot Ones": {
+      "title": "I developed the visual language for Hot Ones Season 15 and forward, including typography, motion principles, and graphic assets, then translated them into toolkits for broadcast and digital use.",
+      "client": "Hot Ones",
+      "year": "2018",
+      "agency": "Company",
+      "agencyDetail": "First We Feast",
+      "partner": "Role",
+      "partnerDetail": "Art Director/Designer"
+    },
+    "McDonaldland": {
+      "title": "I led creative and design on the revival of McDonaldland on Snapchat, reimagining the 1970s universe through AR for a new generation.",
+      "arDescription": "The AR super lens delivered 17+ immersive experiences, from interactive games to digitally transforming McDonald's restaurants into McDonaldland",
+      "secondaryTitle": "From concept through execution, I directed both the creative vision and design of characters, environments, animations, and interactive experiences.",
+      "client": "McDonald's",
+      "year": "2025",
+      "agency": "Agency",
+      "agencyDetail": "Arcadia",
+      "partner": "Role",
+      "partnerDetail": "Creative Lead/Design Lead"
+    },
+    "Coca-Cola": {
+      "title": "Coca-Cola and Snap reimagined the vending machine as an inclusive AR experience for the Olympics. Designed for Olympians and Paralympians alike, the machine could be operated through head movements, worked across all heights and limb differences, and communicated through universal icons instead of language. To vend a Coke, athletes teamed up, turning a simple transaction into a shared moment of connection.",
+      "client": "Coca-Cola x Paris Olympics",
+      "year": "2024",
+      "agency": "Agency",
+      "agencyDetail": "Arcadia",
+      "partner": "Role",
+      "partnerDetail": "Creative/Design Lead"
+    },
+    "Directing Reel": {
+      "title": "I started this journey as a film director, and every skill I have in design, creative, and presentation grew out of my love for making movies. For personal projects, I challenge myself to shoot on Super 16mm, a format that forces me to be intentional with every frame. Filmmaking remains the foundation of my process, shaping how I see and how I lead.",
+      "client": "Making Movies",
+      "year": "Since 2006",
+      "agency": "Agency",
+      "agencyDetail": "Self",
+      "partner": "Role",
+      "partnerDetail": "Director"
+    }
+  }
+}
