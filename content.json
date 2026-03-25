@@ -47,6 +47,15 @@
       "agencyDetail": "Self",
       "partner": "Role",
       "partnerDetail": "Director"
+    },
+    "Hennessy": {
+      "title": "A generative AI experience for Hennessy's celebration of Hip Hop's 50th Anniversary that puts you on the cover of your own hip hop album. Upload a selfie, pick your era and region, and AI transforms your photo into a film-shot album cover, styled, lit, and framed like the real thing.",
+      "client": "Hennessy",
+      "year": "2023",
+      "agency": "Agency",
+      "agencyDetail": "Laundry Service",
+      "partner": "Role",
+      "partnerDetail": "Sr. Art Director, Creative AI Lead"
     }
   }
 }

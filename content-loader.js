@@ -67,6 +67,15 @@ class ContentManager {
                         "agencyDetail": "Self",
                         "partner": "Role",
                         "partnerDetail": "Director"
+                    },
+                    "Hennessy": {
+                        "title": "A generative AI experience for Hennessy's celebration of Hip Hop's 50th Anniversary that puts you on the cover of your own hip hop album. Upload a selfie, pick your era and region, and AI transforms your photo into a film-shot album cover, styled, lit, and framed like the real thing.",
+                        "client": "Hennessy",
+                        "year": "2023",
+                        "agency": "Agency",
+                        "agencyDetail": "Laundry Service",
+                        "partner": "Role",
+                        "partnerDetail": "Sr. Art Director, Creative AI Lead"
                     }
                 }
             };
@@ -114,6 +123,14 @@ class ContentManager {
                     .replace(/for Hot Ones/g, '<span class="highlight-word delay-3">for Hot Ones</span>');
             }
             
+            // Add word highlighting for Hennessy project
+            if (this.currentProject === 'Hennessy') {
+                titleHTML = titleHTML
+                    .replace(/generative AI experience/g, '<span class="highlight-word">generative AI experience</span>')
+                    .replace(/Hip Hop's 50th Anniversary/g, '<span class="highlight-word delay-1">Hip Hop\'s 50th Anniversary</span>')
+                    .replace(/styled, lit, and framed like the real thing/g, '<span class="highlight-word delay-2">styled, lit, and framed like the real thing</span>');
+            }
+
             // Add word highlighting for McDonaldland project
             if (this.currentProject === 'McDonaldland') {
                 titleHTML = titleHTML
@@ -208,14 +225,16 @@ class ContentManager {
         const mcdonaldlandContent = document.getElementById('mcdonaldlandContent');
         const directingReelContent = document.getElementById('directingReelContent');
         const cocaColaContent = document.getElementById('cocaColaContent');
+        const hennessyContent = document.getElementById('hennessyContent');
         const gatoradeCarousel = document.getElementById('gatoradeCarouselSection');
         const projectContainer = document.getElementById('projectSpecificContent');
-        
+
         if (gatoradeContent) gatoradeContent.style.display = 'none';
         if (hotOnesContent) hotOnesContent.style.display = 'none';
         if (mcdonaldlandContent) mcdonaldlandContent.style.display = 'none';
         if (directingReelContent) directingReelContent.style.display = 'none';
         if (cocaColaContent) cocaColaContent.style.display = 'none';
+        if (hennessyContent) hennessyContent.style.display = 'none';
         if (gatoradeCarousel) gatoradeCarousel.style.display = 'none';
         
         // Show content based on current project
@@ -262,6 +281,10 @@ class ContentManager {
             if (cocaColaContent) cocaColaContent.style.display = 'block';
             // Remove container padding for full-width video
             if (projectContainer) projectContainer.style.padding = '0';
+        } else if (this.currentProject === 'Hennessy') {
+            if (hennessyContent) hennessyContent.style.display = 'block';
+            // Reset container padding for Hennessy
+            if (projectContainer) projectContainer.style.padding = '40px 60px';
         } else {
             // For other projects, show default padding but no specific content
             if (projectContainer) projectContainer.style.padding = '40px 60px';
