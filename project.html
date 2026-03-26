@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project - Xach</title>
     <link rel="stylesheet" href="styles.css?v=32">
-    <script src="content-loader.js?v=20250822175300"></script>
+    <script defer src="content-loader.js?v=20250822175300"></script>
     <script async src="//www.instagram.com/embed.js"></script>
     <script defer src="https://player.vimeo.com/api/player.js"></script>
       <style>
@@ -331,27 +331,27 @@
                 <div class="work-section">
                     <ul class="work-list">
                         <li class="work-item">
-                            <div class="work-thumbnail"><img src="assets/images/thumbnails/gatorade.svg" alt="Gatorade" /></div>
+                            <div class="work-thumbnail"><img loading="lazy" src="assets/images/thumbnails/gatorade.svg" alt="Gatorade" /></div>
                             <a href="project.html?project=Gatorade" class="work-link">Gatorade</a>
                         </li>
                         <li class="work-item">
-                            <div class="work-thumbnail"><img src="assets/images/thumbnails/hotones.png" alt="Hot Ones" /></div>
+                            <div class="work-thumbnail"><img loading="lazy" src="assets/images/thumbnails/hotones.png" alt="Hot Ones" /></div>
                             <a href="project.html?project=Hot%20Ones" class="work-link">Hot Ones</a>
                         </li>
                         <li class="work-item">
-                            <div class="work-thumbnail"><img src="assets/images/thumbnails/mcdonalds.svg" alt="McDonaldland" /></div>
+                            <div class="work-thumbnail"><img loading="lazy" src="assets/images/thumbnails/mcdonalds.svg" alt="McDonaldland" /></div>
                             <a href="project.html?project=McDonaldland" class="work-link">McDonaldland</a>
                         </li>
                         <li class="work-item">
-                            <div class="work-thumbnail"><img src="assets/images/thumbnails/coke.svg" alt="Coca-Cola" /></div>
+                            <div class="work-thumbnail"><img loading="lazy" src="assets/images/thumbnails/coke.svg" alt="Coca-Cola" /></div>
                             <a href="project.html?project=Coca-Cola" class="work-link">Coca-Cola</a>
                         </li>
                         <li class="work-item">
-                            <div class="work-thumbnail"><img src="assets/images/projects/Hennessy/images.png" alt="Hennessy" /></div>
+                            <div class="work-thumbnail"><img loading="lazy" src="assets/images/projects/Hennessy/images.png" alt="Hennessy" /></div>
                             <a href="project.html?project=Hennessy" class="work-link">Hennessy</a>
                         </li>
                         <li class="work-item">
-                            <div class="work-thumbnail"><img src="assets/images/thumbnails/directing.jpg" alt="Directing Reel" /></div>
+                            <div class="work-thumbnail"><img loading="lazy" src="assets/images/thumbnails/directing.jpg" alt="Directing Reel" /></div>
                             <a href="project.html?project=Directing%20Reel" class="work-link">Directing Reel</a>
                         </li>
                     </ul>
@@ -759,7 +759,7 @@
                     <div style="flex: 1; display: flex; align-items: flex-end; margin-top: 20px;">
                         <div id="bottomImageContainer" style="width: 100%; border-radius: 8px; overflow: hidden; box-shadow: 0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15);">
                             <img 
-                                src="assets/images/projects/gatorade/pictures/caitlinclark_drink.png" 
+                                src="assets/images/projects/gatorade/pictures/caitlinclark_drink.jpg" 
                                 alt="Caitlin Clark Drinking Gatorade" 
                                 style="width: 100%; height: 100%; object-fit: cover;"
                             />
@@ -808,11 +808,10 @@
         
         <!-- Hot Ones Content -->
         <div id="hotOnesContent" style="display: none; padding: 0; margin: 0;">
-            <img 
-                src="assets/images/projects/hotones/hotones_title.gif" 
-                alt="Hot Ones Title" 
+            <video autoplay muted loop playsinline
+                src="assets/images/projects/hotones/hotones_title.mp4"
                 style="width: 100%; height: auto; display: block; margin: 0; padding: 0;"
-            />
+            ></video>
             
             <!-- Hot Ones GIF Grid -->
             <div class="px-3 lg:px-4" style="padding-top: 40px; padding-bottom: 40px;">
@@ -820,38 +819,34 @@
                     
                     <!-- Top Row - DaBomb.gif -->
                     <div style="width: 100%; display: flex; justify-content: center;">
-                        <img 
-                            src="assets/images/projects/hotones/dabomb.gif" 
-                            alt="Da Bomb" 
+                        <video autoplay muted loop playsinline
+                            src="assets/images/projects/hotones/dabomb.mp4"
                             style="width: 100%; height: auto; border-radius: 8px; max-width: 800px;"
-                        />
+                        ></video>
                     </div>
                     
                                          <!-- Middle Row - 2 Square GIFs -->
                      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; width: 100%;">
                          <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
-                             <img 
-                                 src="assets/images/projects/hotones/apollo.gif" 
-                                 alt="Apollo" 
+                             <video autoplay muted loop playsinline
+                                 src="assets/images/projects/hotones/apollo.mp4"
                                  style="width: 100%; height: auto; border-radius: 8px;"
-                             />
+                             ></video>
                          </div>
                          <div style="width: 100%; display: flex; align-items: center; justify-content: center;">
-                             <img 
-                                 src="assets/images/projects/hotones/dragonintheclouds.gif" 
-                                 alt="Dragon In the Clouds" 
+                             <video autoplay muted loop playsinline
+                                 src="assets/images/projects/hotones/dragonintheclouds.mp4"
                                  style="width: 100%; height: auto; border-radius: 8px;"
-                             />
+                             ></video>
                          </div>
                      </div>
                      
                      <!-- Game Show Sauces Row -->
                      <div style="width: 100%; display: flex; justify-content: center;">
-                         <img 
-                             src="assets/images/projects/hotones/gameshowsauces.gif" 
-                             alt="Game Show Sauces" 
+                         <video autoplay muted loop playsinline
+                             src="assets/images/projects/hotones/gameshowsauces.mp4"
                              style="width: 100%; height: auto; border-radius: 8px; max-width: 400px;"
-                         />
+                         ></video>
                      </div>
                     
                     <!-- Bottom Row - HotOnes_Endcredits.webp -->
@@ -1003,7 +998,7 @@
     <!-- McDonaldland Reunion Video - Full Width -->
     <div id="mcdonaldlandReunionVideo" style="display: none; padding: 40px 0;">
         <img 
-            src="assets/images/projects/mcdonaldland/unnamed.png" 
+            src="assets/images/projects/mcdonaldland/unnamed.jpg" 
             alt="McDonaldland" 
             style="width: 100vw !important; margin-left: calc(-50vw + 50%) !important; margin-right: calc(-50vw + 50%) !important; padding: 0 !important; display: block !important; box-sizing: border-box !important; height: auto;"
         />
@@ -1048,12 +1043,12 @@
         <div class="gatorade-simple-grid">
             <!-- Left Side - Shedeur Image -->
             <div class="gatorade-left-image">
-                <img src="assets/images/projects/gatorade/pictures/shedeur01.png" alt="Shedeur Sanders" class="shedeur-natural">
+                <img loading="lazy" src="assets/images/projects/gatorade/pictures/shedeur01.png" alt="Shedeur Sanders" class="shedeur-natural">
             </div>
             
             <!-- Center - Single Cleat Image -->
             <div class="gatorade-center-image">
-                <img src="assets/images/projects/gatorade/ac9c8f49-202a-4d51-89ca-c0ffa610a617_rw_1920.jpg" alt="Heat Reactive Cleats" class="cleat-natural">
+                <img loading="lazy" src="assets/images/projects/gatorade/ac9c8f49-202a-4d51-89ca-c0ffa610a617_rw_1920.jpg" alt="Heat Reactive Cleats" class="cleat-natural">
             </div>
             
             <!-- Right Side - Mache Video -->
@@ -1080,117 +1075,117 @@
             ">
                 <!-- Row 1 - Randomized -->
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0021_Smiley-Sun.png" alt="Smiley Sun" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0021_Smiley-Sun.png" alt="Smiley Sun" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/grimace01.gif" alt="Grimace 01" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/grimace01.gif" alt="Grimace 01" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/fryfrenzy.gif" alt="Fry Frenzy" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/fryfrenzy.gif" alt="Fry Frenzy" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0001_McNugget-Buddies.png" alt="McNugget Buddies" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0001_McNugget-Buddies.png" alt="McNugget Buddies" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/pinkboat.gif" alt="Pink Boat" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/pinkboat.gif" alt="Pink Boat" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/Mayor.gif" alt="Mayor" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/Mayor.gif" alt="Mayor" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/orangefry.gif" alt="Orange Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/orangefry.gif" alt="Orange Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 
                 <!-- Row 2 - Randomized -->
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/bluefry.gif" alt="Blue Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/bluefry.gif" alt="Blue Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0018_Fry-Thatch.png" alt="Fry Thatch" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0018_Fry-Thatch.png" alt="Fry Thatch" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/welcometomcdonaldland.png" alt="Welcome to McDonaldland" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/welcometomcdonaldland.png" alt="Welcome to McDonaldland" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/hamburglar.gif" alt="Hamburglar" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/hamburglar.gif" alt="Hamburglar" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/filet01.gif" alt="Filet 01" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/filet01.gif" alt="Filet 01" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0009_Sundae-dog.png" alt="Sundae Dog" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0009_Sundae-dog.png" alt="Sundae Dog" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/boat.gif" alt="Boat" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/boat.gif" alt="Boat" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 
                 <!-- Row 3 - Randomized -->
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/mcdonaldsign.gif" alt="McDonald Sign" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/mcdonaldsign.gif" alt="McDonald Sign" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/applepieorchard.gif" alt="Apple Pie Orchard" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/applepieorchard.gif" alt="Apple Pie Orchard" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0014_Officer-Big-Mac.png" alt="Officer Big Mac" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0014_Officer-Big-Mac.png" alt="Officer Big Mac" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/yellowfry.gif" alt="Yellow Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/yellowfry.gif" alt="Yellow Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/dreamflight.png" alt="Dream Flight" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/dreamflight.png" alt="Dream Flight" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/greenfry.gif" alt="Green Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/greenfry.gif" alt="Green Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/grimaceislanddash.gif" alt="Grimace Island Dash" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/grimaceislanddash.gif" alt="Grimace Island Dash" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 
                 <!-- Row 4 - Randomized -->
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/ronald.gif" alt="Ronald" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/ronald.gif" alt="Ronald" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/flower.gif" alt="Flower" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/flower.gif" alt="Flower" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0011_Captain-Crook.png" alt="Captain Crook" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0011_Captain-Crook.png" alt="Captain Crook" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/lilypad.gif" alt="Lily Pad" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/lilypad.gif" alt="Lily Pad" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/burgerpatch.png" alt="Burger Patch" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/burgerpatch.png" alt="Burger Patch" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/Mayorsmagicglasses.gif" alt="Mayors Magic Glasses" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/Mayorsmagicglasses.gif" alt="Mayors Magic Glasses" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/filet02.gif" alt="Filet 02" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/filet02.gif" alt="Filet 02" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 
                 <!-- Row 5 - Randomized -->
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/pancake.png" alt="Pancake" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/pancake.png" alt="Pancake" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0004_Grimace-+-Grimace-Island.png" alt="Grimace + Grimace Island" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/McDonaldland_Vertical_Layered_FINAL_0004_Grimace-+-Grimace-Island.png" alt="Grimace + Grimace Island" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/splash.gif" alt="Splash" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/splash.gif" alt="Splash" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/birdie.gif" alt="Birdie" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/birdie.gif" alt="Birdie" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/mcdonaldfry.gif" alt="McDonald Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/mcdonaldfry.gif" alt="McDonald Fry" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/jointhemcsquad.png" alt="Join the MC Squad" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/jointhemcsquad.png" alt="Join the MC Squad" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
                 <div style="width: 100%; height: 80px; display: flex; align-items: center; justify-content: center; border-radius: 4px; padding: 0 16px;">
-                    <img src="assets/images/projects/mcdonaldland/grid/grimace02.gif" alt="Grimace 02" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
+                    <img loading="lazy" src="assets/images/projects/mcdonaldland/grid/grimace02.gif" alt="Grimace 02" style="max-width: 100%; max-height: 100%; object-fit: contain;" />
                 </div>
             </div>
         </div>
@@ -1208,24 +1203,24 @@
     <!-- Custom Media Layout: Center 4:5 with Side 9:16 frames - Gatorade Only -->
     <div id="gatoradeCarouselSection" class="custom-media-layout scroll-animate" style="display: none;">
         <div class="side-frame side-frame-left" style="position: relative; overflow: hidden;">
-            <img src="assets/images/projects/gatorade/pictures/shedeur01.png" alt="Shedeur Sanders" style="width: 100%; height: 100%; object-fit: cover;">
+            <img loading="lazy" src="assets/images/projects/gatorade/pictures/shedeur01.png" alt="Shedeur Sanders" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
         <div class="center-frame center-frame-main" style="position: relative; overflow: hidden;">
             <div class="carousel-track" id="carouselTrack" style="display: flex; transition: transform 1s ease; height: 100%; width: 500%;">
                 <div class="carousel-slide" style="flex: 0 0 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                    <img src="assets/images/projects/gatorade/7bda8507-1e0f-4ea2-9ecd-228842b2b02a_rw_1200.jpg" alt="Cleat Design 1" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img loading="lazy" src="assets/images/projects/gatorade/7bda8507-1e0f-4ea2-9ecd-228842b2b02a_rw_1200.jpg" alt="Cleat Design 1" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="carousel-slide" style="flex: 0 0 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                    <img src="assets/images/projects/gatorade/ac9c8f49-202a-4d51-89ca-c0ffa610a617_rw_1920.jpg" alt="Cleat Design 2" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img loading="lazy" src="assets/images/projects/gatorade/ac9c8f49-202a-4d51-89ca-c0ffa610a617_rw_1920.jpg" alt="Cleat Design 2" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="carousel-slide" style="flex: 0 0 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                    <img src="assets/images/projects/gatorade/ae0c9c60-f8cf-4eb3-b0d3-95f04b75f471_rw_1200.jpg" alt="Cleat Design 3" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img loading="lazy" src="assets/images/projects/gatorade/ae0c9c60-f8cf-4eb3-b0d3-95f04b75f471_rw_1200.jpg" alt="Cleat Design 3" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="carousel-slide" style="flex: 0 0 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                    <img src="assets/images/projects/gatorade/c3e08ea3-6272-458c-9ed5-515990011e72_rw_1920.jpg" alt="Cleat Design 4" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img loading="lazy" src="assets/images/projects/gatorade/c3e08ea3-6272-458c-9ed5-515990011e72_rw_1920.jpg" alt="Cleat Design 4" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="carousel-slide" style="flex: 0 0 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                    <img src="assets/images/projects/gatorade/d806bcad-a827-4bce-9b4e-b79773488b04_rw_1200.jpg" alt="Cleat Design 5" style="width: 100%; height: 100%; object-fit: cover;">
+                    <img loading="lazy" src="assets/images/projects/gatorade/d806bcad-a827-4bce-9b4e-b79773488b04_rw_1200.jpg" alt="Cleat Design 5" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
         </div>
@@ -1253,27 +1248,27 @@
                         <span class="more-projects-link">Home</span>
                     </a>
                     <a href="project.html?project=Gatorade" class="more-projects-item">
-                        <div class="more-projects-thumbnail"><img src="assets/images/thumbnails/gatorade.svg" alt="Gatorade" /></div>
+                        <div class="more-projects-thumbnail"><img loading="lazy" src="assets/images/thumbnails/gatorade.svg" alt="Gatorade" /></div>
                         <span class="more-projects-link">Gatorade</span>
                     </a>
                     <a href="project.html?project=Hot%20Ones" class="more-projects-item">
-                        <div class="more-projects-thumbnail"><img src="assets/images/thumbnails/hotones.png" alt="Hot Ones" /></div>
+                        <div class="more-projects-thumbnail"><img loading="lazy" src="assets/images/thumbnails/hotones.png" alt="Hot Ones" /></div>
                         <span class="more-projects-link">Hot Ones</span>
                     </a>
                     <a href="project.html?project=McDonaldland" class="more-projects-item">
-                        <div class="more-projects-thumbnail"><img src="assets/images/thumbnails/mcdonalds.svg" alt="McDonaldland" /></div>
+                        <div class="more-projects-thumbnail"><img loading="lazy" src="assets/images/thumbnails/mcdonalds.svg" alt="McDonaldland" /></div>
                         <span class="more-projects-link">McDonaldland</span>
                     </a>
                     <a href="project.html?project=Coca-Cola" class="more-projects-item">
-                        <div class="more-projects-thumbnail"><img src="assets/images/thumbnails/coke.svg" alt="Coca-Cola" /></div>
+                        <div class="more-projects-thumbnail"><img loading="lazy" src="assets/images/thumbnails/coke.svg" alt="Coca-Cola" /></div>
                         <span class="more-projects-link">Coca-Cola</span>
                     </a>
                     <a href="project.html?project=Hennessy" class="more-projects-item">
-                        <div class="more-projects-thumbnail"><img src="assets/images/projects/Hennessy/images.png" alt="Hennessy" /></div>
+                        <div class="more-projects-thumbnail"><img loading="lazy" src="assets/images/projects/Hennessy/images.png" alt="Hennessy" /></div>
                         <span class="more-projects-link">Hennessy</span>
                     </a>
                     <a href="project.html?project=Directing%20Reel" class="more-projects-item">
-                        <div class="more-projects-thumbnail"><img src="assets/images/thumbnails/directing.jpg" alt="Directing Reel" /></div>
+                        <div class="more-projects-thumbnail"><img loading="lazy" src="assets/images/thumbnails/directing.jpg" alt="Directing Reel" /></div>
                         <span class="more-projects-link">Directing Reel</span>
                     </a>
                 </div>
