@@ -126,6 +126,16 @@
               border-top-color: #ccff00;
           }
           
+          /* AI.BUM Embed Glow */
+          @keyframes albumGlow {
+              0% {
+                  box-shadow: 0 0 15px rgba(204, 255, 0, 0.3), 0 0 30px rgba(204, 255, 0, 0.15);
+              }
+              100% {
+                  box-shadow: 0 0 25px rgba(204, 255, 0, 0.5), 0 0 50px rgba(204, 255, 0, 0.25), 0 0 80px rgba(204, 255, 0, 0.1);
+              }
+          }
+
           /* Neon Button Animation */
           @keyframes neonYellowPulse {
               0% {
@@ -187,6 +197,46 @@
               #mcdonaldlandContent > div {
                   padding-left: 10px !important;
                   padding-right: 10px !important;
+              }
+
+              /* McDonaldland AR text - inline padding override */
+              #mcdonaldlandARSection {
+                  padding-left: 20px !important;
+                  padding-right: 20px !important;
+              }
+
+              /* McDonaldland Games Video - reduce side padding on mobile */
+              #mcdonaldlandGamesVideo {
+                  padding-left: 20px !important;
+                  padding-right: 20px !important;
+              }
+
+              /* McDonaldland Extended Description - fix w-screen overflow */
+              #mcdonaldlandContent .w-screen {
+                  width: 100% !important;
+                  padding-left: 20px !important;
+                  padding-right: 20px !important;
+              }
+
+              /* Reduce vertical spacing on mobile */
+              .my-16.flex.w-screen {
+                  margin-top: 32px !important;
+                  margin-bottom: 32px !important;
+              }
+
+              #mcdonaldlandReunionVideo {
+                  padding-top: 16px !important;
+                  padding-bottom: 16px !important;
+              }
+
+              #mcdonaldlandARSection {
+                  padding-top: 60px !important;
+                  padding-bottom: 60px !important;
+              }
+
+              #mcdonaldlandGamesVideo {
+                  padding-top: 20px !important;
+                  padding-bottom: 20px !important;
               }
 
               /* Hennessy text blocks - reset negative margins on mobile */
@@ -343,16 +393,16 @@
                             <a href="project.html?project=McDonaldland" class="work-link">McDonaldland</a>
                         </li>
                         <li class="work-item">
-                            <div class="work-thumbnail"><img loading="lazy" src="assets/images/thumbnails/coke.svg" alt="Coca-Cola" /></div>
-                            <a href="project.html?project=Coca-Cola" class="work-link">Coca-Cola</a>
-                        </li>
-                        <li class="work-item">
                             <div class="work-thumbnail"><img loading="lazy" src="assets/images/projects/Hennessy/images.png" alt="Hennessy" /></div>
                             <a href="project.html?project=Hennessy" class="work-link">Hennessy</a>
                         </li>
                         <li class="work-item">
                             <div class="work-thumbnail"><img loading="lazy" src="assets/images/thumbnails/directing.jpg" alt="Directing Reel" /></div>
                             <a href="project.html?project=Directing%20Reel" class="work-link">Directing Reel</a>
+                        </li>
+                        <li class="work-item">
+                            <div class="work-thumbnail"><img loading="lazy" src="assets/images/thumbnails/coke.svg" alt="Coca-Cola" /></div>
+                            <a href="project.html?project=Coca-Cola" class="work-link">Coca-Cola</a>
                         </li>
                     </ul>
                 </div>
@@ -930,13 +980,13 @@
         <!-- Hennessy Content -->
         <div id="hennessyContent" style="display: none;">
             <!-- YouTube Video -->
-            <div style="display: flex; justify-content: center; padding: 0 0 60px 0;">
-                <div style="width: 100%; max-width: 800px; aspect-ratio: 16/9;">
+            <div style="padding: 0 0 60px 0;">
+                <div style="width: 100vw; margin-left: calc(-50vw + 50%); aspect-ratio: 16/9;">
                     <iframe
                         src="https://www.youtube.com/embed/sJXTGdHB_So?autoplay=1&mute=1&loop=1&playlist=sJXTGdHB_So&controls=1&rel=0"
                         width="100%"
                         height="100%"
-                        style="border: none; border-radius: 8px;"
+                        style="border: none; border-radius: 0;"
                         allow="autoplay; encrypted-media"
                         allowfullscreen
                         title="Hennessy x Hip Hop 50"
@@ -952,24 +1002,25 @@
             </div>
 
             <!-- Event Photo -->
-            <div style="display: flex; justify-content: center; padding: 0 0 60px 0;">
+            <div style="padding: 0 0 60px 0;">
                 <img
                     src="assets/images/projects/Hennessy/HENNESSY-NAS-LIMITED-EDITION-HIP-HOP-50-89-2880x1540-1.jpg"
                     alt="Hennessy x Hip Hop 50 Event"
-                    style="width: 100%; max-width: 1000px; height: auto; border-radius: 8px; box-shadow: 0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15);"
+                    style="width: 100vw; margin-left: calc(-50vw + 50%); height: auto; border-radius: 0; display: block;"
                 />
             </div>
 
             <!-- Prompt Architecture Description -->
             <div class="hennessy-text-block sticky flex justify-center px-3 lg:px-4" style="padding-bottom: 60px;">
                 <div class="flex max-w-[700px] flex-col items-start justify-center">
-                    <p class="text-large inline max-w-[700px]">375 unique prompt combinations. Five eras. Five regions. Every image feels like it was pulled from a crate of records you forgot you owned. The creative direction lives entirely in the prompt architecture — modular blocks for clothing, background, regional mood, and photographic style that snap together to produce something that feels authored, not generated. Don't believe us? Try it for yourself:</p>
+                    <p class="text-large inline max-w-[700px]">375 unique prompt combinations. Five eras. Five regions. Every image feels like it was pulled from a crate of records you forgot you owned. The creative direction lives entirely in the prompt architecture — modular blocks for clothing, background, regional mood, and photographic style that snap together to produce something that feels authored, not generated.</p>
+                    <p class="text-large inline max-w-[700px]" style="margin-top: 1em;">Don't believe us? Try it for yourself:</p>
                 </div>
             </div>
 
             <!-- Embedded Demo -->
             <div style="display: flex; justify-content: center; padding: 0 0 60px 0;">
-                <div style="aspect-ratio: 3/4; max-width: 430px; width: 100%;">
+                <div style="aspect-ratio: 3/4; max-width: 430px; width: 100%; border-radius: 16px; animation: albumGlow 2s ease-in-out infinite alternate;">
                     <iframe
                         src="https://hennessyhh50.netlify.app/"
                         width="100%"
@@ -1005,7 +1056,7 @@
     </div>
     
     <!-- McDonaldland AR Description Section -->
-    <div id="mcdonaldlandARSection" style="display: none; padding: 120px 0;" class="sticky flex w-screen justify-center px-3 lg:px-4">
+    <div id="mcdonaldlandARSection" style="display: none; padding: 120px 60px;" class="sticky flex w-screen justify-center px-3 lg:px-4">
         <div class="flex max-w-[700px] flex-col items-start justify-center space-y-6">
             <p class="text-large inline max-w-[700px]" id="mcdonaldlandARText">
                 The AR super lens delivered 17+ immersive experiences, from interactive games to digitally transforming McDonald's restaurants into McDonaldland
@@ -1014,13 +1065,13 @@
     </div>
     
     <!-- McDonaldland Games Video -->
-    <div id="mcdonaldlandGamesVideo" style="display: none; padding: 40px 60px;">
-        <video 
-            autoplay 
-            muted 
-            loop 
+    <div id="mcdonaldlandGamesVideo" style="display: none; padding: 40px 0;">
+        <video
+            autoplay
+            muted
+            loop
             preload="metadata"
-            style="width: 100%; height: auto; display: block; border-radius: 8px;"
+            style="width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); height: auto; display: block; border-radius: 0;"
         >
             <source src="assets/images/projects/mcdonaldland/mcd_games.mp4" type="video/mp4">
             Your browser does not support the video tag.
@@ -1259,10 +1310,6 @@
                         <div class="more-projects-thumbnail"><img loading="lazy" src="assets/images/thumbnails/mcdonalds.svg" alt="McDonaldland" /></div>
                         <span class="more-projects-link">McDonaldland</span>
                     </a>
-                    <a href="project.html?project=Coca-Cola" class="more-projects-item">
-                        <div class="more-projects-thumbnail"><img loading="lazy" src="assets/images/thumbnails/coke.svg" alt="Coca-Cola" /></div>
-                        <span class="more-projects-link">Coca-Cola</span>
-                    </a>
                     <a href="project.html?project=Hennessy" class="more-projects-item">
                         <div class="more-projects-thumbnail"><img loading="lazy" src="assets/images/projects/Hennessy/images.png" alt="Hennessy" /></div>
                         <span class="more-projects-link">Hennessy</span>
@@ -1270,6 +1317,10 @@
                     <a href="project.html?project=Directing%20Reel" class="more-projects-item">
                         <div class="more-projects-thumbnail"><img loading="lazy" src="assets/images/thumbnails/directing.jpg" alt="Directing Reel" /></div>
                         <span class="more-projects-link">Directing Reel</span>
+                    </a>
+                    <a href="project.html?project=Coca-Cola" class="more-projects-item">
+                        <div class="more-projects-thumbnail"><img loading="lazy" src="assets/images/thumbnails/coke.svg" alt="Coca-Cola" /></div>
+                        <span class="more-projects-link">Coca-Cola</span>
                     </a>
                 </div>
             </div>
